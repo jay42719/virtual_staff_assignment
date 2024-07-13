@@ -14,8 +14,6 @@ AWS.config.update({
 
 const s3 = new AWS.S3();
 
-// const pathToFfprobe = 'C:\ffmpeg\bin\ffprobe.exe' //'C:\\path\\to\\ffmpeg\\bin\\ffprobe.exe'; // Adjust this path
-// ffmpeg.setFfprobePath(pathToFfprobe);
 const ffprobeStatic = require('ffprobe-static');
 ffmpeg.setFfprobePath(ffprobeStatic.path);
 
@@ -53,7 +51,8 @@ exports.upload = async (req, res) => {
         const params = {
             Bucket: process.env.S3_BUCKET_NAME,
             Key: `${Date.now()}-${file.originalname}`,
-            Body: fileContent
+            Body: fileContent,
+            ACL: 'public-read'
         };
 
         const s3Data = await s3.upload(params).promise();
