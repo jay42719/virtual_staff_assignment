@@ -16,7 +16,6 @@ This project is a MERN stack application that allows users to upload video and a
 - [Usage](#usage)
 - [Testing](#testing)
 - [Documentation](#documentation)
-- [Submission](#submission)
 
 ## Requirements
 
@@ -51,7 +50,7 @@ This project is a MERN stack application that allows users to upload video and a
     AWS_SECRET_ACCESS_KEY=<your-aws-secret-access-key>
     AWS_REGION=<your-aws-region>
     S3_BUCKET_NAME=<your-s3-bucket-name>
-    MONGODB_URI=<your-mongodb-uri>
+    MONGODB_CONNECTION_URL=<your-mongodb-uri>
     PORT=<select-port>
     ```
 
@@ -101,7 +100,7 @@ This project is a MERN stack application that allows users to upload video and a
 
 ### File Upload Endpoint
 
-- **URL:** `/upload`
+- **URL:** `/file/upload`
 - **Method:** `POST`
 - **Parameters:**
   - `file`: The file to be uploaded.
@@ -111,10 +110,3 @@ This project is a MERN stack application that allows users to upload video and a
   - `200 OK`: File uploaded successfully.
   - `400 Bad Request`: File duration exceeds 30 minutes or other validation errors.
   - `500 Internal Server Error`: An error occurred on the server.
-
-## Submission
-
-Submit the code as a GitHub repository link. Ensure the repository includes:
-- Complete source code for the backend and frontend.
-- A `README.md` file with setup instructions.
-- Clear documentation on configuring AWS S3 and MongoDB.
