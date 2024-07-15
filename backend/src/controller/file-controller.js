@@ -46,7 +46,7 @@ exports.upload = async (req, res) => {
             });
         });
         console.log(`fileInfo.format.duration :: ${fileInfo.format.duration}`);
-        if (fileInfo.format.duration > 1800) {
+        if (fileInfo.format.duration > 1800) { // 30 min validation
             fs.unlinkSync(filePath);
             return res.status(400).json({
                 error: 'File duration exceeds 30 minutes'
