@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, Box, TextField, Button, LinearProgress, List, ListItem, ListItemText, Paper } from '@mui/material';
+import { Container, Typography, Box, TextField, Button, LinearProgress, List, ListItem, ListItemText, Paper, Link } from '@mui/material';
 import axios from 'axios';
 
 const App = () => {
@@ -91,7 +91,19 @@ const App = () => {
               <ListItem key={file._id} divider>
                 <ListItemText
                   primary={file.title}
-                  secondary={file.description}
+				  secondary={
+					<React.Fragment>
+					  <Typography
+						sx={{ display: 'inline' }}
+						component="span"
+						variant="body2"
+						color="text.primary"
+					  >
+						{`${file.description} - `}
+					  </Typography>
+					  	<Link href={file.fileUrl}>{file.fileUrl}</Link>
+					</React.Fragment>
+				  }
                 />
               </ListItem>
             ))}
