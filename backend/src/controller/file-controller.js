@@ -18,9 +18,24 @@ const ffprobeStatic = require('ffprobe-static');
 ffmpeg.setFfprobePath(ffprobeStatic.path);
 
 
+exports.list = async (req, res) => {
+    try {
+        const files = await File.find({});
+        res.json(files);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            error: 'Failed to fetch files'
+        });
+    }
+};
+
 exports.upload = async (req, res) => {
     try {
-        const { title, description } = req.body;
+        const {
+            title,
+            description
+        } = req.body;
         const file = req.file;
         const filePath = path.join(__dirname, '../../', file.path);
         console.log(`filePath :: ${filePath}`);
@@ -33,7 +48,9 @@ exports.upload = async (req, res) => {
 
         if (fileInfo.format.duration > 1800) {
             fs.unlinkSync(filePath);
-            return res.status(400).json({ error: 'File duration exceeds 30 minutes' });
+            return res.status(400).json({
+                error: 'File duration exceeds 30 minutes'
+            });
         }
 
         const compressedFilePath = `${filePath}-compressed.mp4`;
