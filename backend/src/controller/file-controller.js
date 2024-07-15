@@ -45,7 +45,7 @@ exports.upload = async (req, res) => {
                 resolve(metadata);
             });
         });
-
+        console.log(`fileInfo.format.duration :: ${fileInfo.format.duration}`);
         if (fileInfo.format.duration > 1800) {
             fs.unlinkSync(filePath);
             return res.status(400).json({
